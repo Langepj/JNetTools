@@ -7,7 +7,7 @@ import javafx.scene.layout.GridPane;
 
 import java.net.InetAddress;
 
-public class AbstractTab implements TabInterface {
+public class AbstractTab {
 
 
     public static Tab createTab() {
