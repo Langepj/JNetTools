@@ -14,10 +14,11 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         TabPane tabPane = new TabPane();
-        primaryStage.setTitle("JWhois");
+        primaryStage.setTitle("JNetTool");
         primaryStage.setScene(new Scene(tabPane, 600, 750));
 
         tabPane.getTabs().add(WhoIs.createTab());
+        tabPane.getTabs().add(PortScan.createTab());
 
         primaryStage.show();
     }

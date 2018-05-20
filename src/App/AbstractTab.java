@@ -5,6 +5,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.GridPane;
 
+import java.net.InetAddress;
+
 public class AbstractTab implements TabInterface {
 
 
@@ -20,4 +22,17 @@ public class AbstractTab implements TabInterface {
         grid.setPadding(new Insets(25, 25, 25, 25));
         return grid;
     }
+
+    protected static Boolean isReachable(String ipAddress) {
+        boolean reachable = false;
+        try {
+            InetAddress address = InetAddress.getByName(ipAddress);
+            reachable = address.isReachable(10000);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return reachable;
+    }
+
 }
