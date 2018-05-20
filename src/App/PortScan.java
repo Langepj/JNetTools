@@ -53,13 +53,12 @@ public class PortScan extends AbstractTab {
         return whoIsTab;
     }
 
-    public static String getPortScan(String address) {
-        String out = "";
+    private static String getPortScan(String address) {
+        StringBuilder out = new StringBuilder();
         final ExecutorService es = Executors.newFixedThreadPool(20);
-        final int timeout = 200;
         final List<Future<Integer>> futures = new ArrayList<>();
         for (int port = 1; port <= 1024; port++) {
-            futures.add(portIsOpen(es, address, port, timeout));
+            futures.add(portIsOpen(es, address, port));
         }
         es.shutdown();
         try {
@@ -70,10 +69,10 @@ public class PortScan extends AbstractTab {
                     openPorts++;
                 }
             }
-            out += "Found " + openPorts + " ports open on " + address + "\n";
+            out.append("Found ").append(openPorts).append(" ports open on ").append(address).append("\n");
             for (final Future<Integer> f : futures) {
                 if (f.get() != -1) {
-                    out += f.get() + "\n";
+                    out.append(f.get()).append("\n");
                 }
             }
 
@@ -82,14 +81,14 @@ public class PortScan extends AbstractTab {
         } catch (ExecutionException e) {
             return "Execution failed";
         }
-        return out;
+        return out.toString();
     }
 
-    public static Future<Integer> portIsOpen(final ExecutorService es, final String ip, final int port, final int timeout) {
+    private static Future<Integer> portIsOpen(final ExecutorService es, final String ip, final int port) {
         return es.submit(() -> {
             try {
                 Socket socket = new Socket();
-                socket.connect(new InetSocketAddress(ip, port), timeout);
+                socket.connect(new InetSocketAddress(ip, port), 200);
                 socket.close();
                 return port;
             } catch (Exception ex) {

@@ -14,7 +14,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         TabPane tabPane = new TabPane();
-        primaryStage.setTitle("JNetTool");
+        primaryStage.setTitle("JNetTools");
         primaryStage.setScene(new Scene(tabPane, 600, 750));
 
         tabPane.getTabs().add(WhoIs.createTab());

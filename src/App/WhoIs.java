@@ -49,18 +49,18 @@ public class WhoIs extends AbstractTab {
         return whoIsTab;
     }
 
-    public static String getWhois(String domain) {
-        String whois = "";
+    private static String getWhois(String domain) {
+        StringBuilder whois = new StringBuilder();
         try {
             final Socket server = new Socket("whois.markmonitor.com", 43);
             final PrintStream out = new PrintStream(server.getOutputStream());
             final BufferedReader in = new BufferedReader(new InputStreamReader(server.getInputStream()));
-            String line = "";
+            String line;
             // Send the whois query
             out.println(domain);
 
             while ((line = in.readLine()) != null) {
-                whois += line + "\n";
+                whois.append(line).append("\n");
             }
             server.close();
         } catch (java.net.UnknownHostException e) {
@@ -71,7 +71,7 @@ public class WhoIs extends AbstractTab {
             // Could not connect to whois server
             return "Unable to connect: " + e;
         }
-        return whois;
+        return whois.toString();
     }
 
 }
