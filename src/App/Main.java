@@ -19,6 +19,7 @@ public class Main extends Application {
 
         tabPane.getTabs().add(WhoIs.createTab());
         tabPane.getTabs().add(PortScan.createTab());
+        tabPane.getTabs().add(NetworkMap.createTab());
 
         primaryStage.show();
     }
