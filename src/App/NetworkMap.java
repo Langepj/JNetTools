@@ -57,14 +57,13 @@ public class NetworkMap extends AbstractTab {
                 break;
             }
 
-        out.append("My Device IP: ").append(address).append("\n");
+        out.append("My Device IP: ").append(address).append("\n").append("Search log: \n");
 
-        out.append("Search log: \n");
         for (int i = 1; i <= 254; ++i)
             try {
                 InetAddress addr = InetAddress.getByName(mynetworkips + Integer.toString(i));
                 if (addr.isReachable(200)) {
-                    out.append(addr).append(" ").append(addr.getHostName()).append("/n");
+                    out.append(addr).append(" ").append(addr.getHostName()).append("\n");
                 }
             } catch (IOException ioex) {
                 return "IO Exception";
