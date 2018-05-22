@@ -1,5 +1,8 @@
-package App;
+package UI;
 
+import NetTools.NetworkMapper;
+import NetTools.PortScanner;
+import NetTools.WhoIs;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.TabPane;
@@ -17,9 +20,9 @@ public class Main extends Application {
         primaryStage.setTitle("JNetTools");
         primaryStage.setScene(new Scene(tabPane, 600, 750));
 
-        tabPane.getTabs().add(WhoIs.createTab());
-        tabPane.getTabs().add(PortScan.createTab());
-        tabPane.getTabs().add(NetworkMap.createTab());
+        tabPane.getTabs().add(new ToolTab(new WhoIs()));
+        tabPane.getTabs().add(new ToolTab(new PortScanner()));
+        tabPane.getTabs().add(new ToolTab(new NetworkMapper()));
 
         primaryStage.show();
     }
