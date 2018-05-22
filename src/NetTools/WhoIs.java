@@ -19,7 +19,7 @@ public class WhoIs implements NetworkTool {
     private String whoIs(String address) {
         StringBuilder whois = new StringBuilder();
         try {
-            final Socket server = new Socket("whois.markmonitor.com", 43);
+            final Socket server = new Socket("whois.internic.net", 43);
             final PrintStream out = new PrintStream(server.getOutputStream());
             final BufferedReader in = new BufferedReader(new InputStreamReader(server.getInputStream()));
             String line;

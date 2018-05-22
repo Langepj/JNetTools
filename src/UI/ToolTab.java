@@ -12,7 +12,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 class ToolTab extends Tab {
+    private NetworkTool networkTool;
     ToolTab(NetworkTool networkTool) {
+        this.networkTool = networkTool;
         TextField ipTextField = new TextField();
         Text displayField = new Text();
 
