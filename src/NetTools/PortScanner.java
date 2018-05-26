@@ -21,7 +21,7 @@ public class PortScanner implements NetworkTool {
 
     private String portScan(String address) {
         StringBuilder out = new StringBuilder();
-        final ExecutorService es = Executors.newFixedThreadPool(1024 / Runtime.getRuntime().availableProcessors());
+        final ExecutorService es = Executors.newFixedThreadPool(256);
         final List<Future<Integer>> futures = new ArrayList<>();
 
         for (int port = 1; port <= 1024; port++) {

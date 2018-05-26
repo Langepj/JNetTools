@@ -47,7 +47,7 @@ public class LocalDevices implements NetworkTool {
 
         out.append("My Device IP: ").append(address).append("\n").append("Search log: \n");
 
-        final ExecutorService es = Executors.newFixedThreadPool(254 / Runtime.getRuntime().availableProcessors());
+        final ExecutorService es = Executors.newFixedThreadPool(256);
         final List<Future<String>> futures = new ArrayList<>();
         for (int i = 1; i <= 254; ++i) {
             futures.add(hostReachable(es, mynetworkips + Integer.toString(i)));
