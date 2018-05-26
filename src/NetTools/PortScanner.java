@@ -36,12 +36,14 @@ public class PortScanner implements NetworkTool {
 
     private String portScan(String address) {
         StringBuilder out = new StringBuilder();
-        final ExecutorService es = Executors.newFixedThreadPool(20);
+        final ExecutorService es = Executors.newFixedThreadPool(1024 / Runtime.getRuntime().availableProcessors());
         final List<Future<Integer>> futures = new ArrayList<>();
+
         for (int port = 1; port <= 1024; port++) {
             futures.add(portIsOpen(es, address, port));
         }
         es.shutdown();
+
         try {
             int openPorts = 0;
             for (final Future<Integer> f : futures) {
@@ -62,6 +64,7 @@ public class PortScanner implements NetworkTool {
         } catch (ExecutionException e) {
             return "Execution failed";
         }
+
         return out.toString();
     }
 }

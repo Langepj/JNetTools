@@ -13,6 +13,7 @@ import javafx.scene.text.Text;
 
 class ToolTab extends Tab {
     private NetworkTool networkTool;
+
     ToolTab(NetworkTool networkTool) {
         this.networkTool = networkTool;
         TextField ipTextField = new TextField();
