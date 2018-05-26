@@ -1,6 +1,6 @@
 package UI;
 
-import NetTools.NetworkMapper;
+import NetTools.LocalDevices;
 import NetTools.PortScanner;
 import NetTools.WhoIs;
 import javafx.application.Application;
@@ -22,7 +22,7 @@ public class Main extends Application {
 
         tabPane.getTabs().add(new ToolTab(new WhoIs()));
         tabPane.getTabs().add(new ToolTab(new PortScanner()));
-        tabPane.getTabs().add(new ToolTab(new NetworkMapper()));
+        tabPane.getTabs().add(new ToolTab(new LocalDevices()));
 
         primaryStage.show();
     }

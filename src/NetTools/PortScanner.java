@@ -11,21 +11,6 @@ import java.util.concurrent.Future;
 
 public class PortScanner implements NetworkTool {
 
-    private static Future<Integer> portIsOpen(final ExecutorService es, final String ip, final int port) {
-        return es.submit(() -> {
-            try {
-                Socket socket = new Socket();
-                socket.connect(new InetSocketAddress(ip, port), 200);
-                socket.close();
-                return port;
-            } catch (Exception ex) {
-                return -1;
-            }
-        });
-
-
-    }
-
     public String getTitle() {
         return "Port Scan";
     }
@@ -66,5 +51,20 @@ public class PortScanner implements NetworkTool {
         }
 
         return out.toString();
+    }
+
+    private static Future<Integer> portIsOpen(final ExecutorService es, final String ip, final int port) {
+        return es.submit(() -> {
+            try {
+                Socket socket = new Socket();
+                socket.connect(new InetSocketAddress(ip, port), 200);
+                socket.close();
+                return port;
+            } catch (Exception ex) {
+                return -1;
+            }
+        });
+
+
     }
 }
