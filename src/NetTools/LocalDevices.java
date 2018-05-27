@@ -28,10 +28,12 @@ public class LocalDevices implements NetworkTool {
     }
 
     public String getTitle() {
+
         return "Local Devices";
     }
 
     public String query(String address) {
+
         return getLocalDevices(address);
     }
 
